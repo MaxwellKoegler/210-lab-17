@@ -3,6 +3,11 @@
 #include <iostream>
 using namespace std;
 
+struct Node {
+    float value;
+    Node *next;
+};
+
 void addNodeFront(Node *&head);
 void addNodeTail(Node *&head);
 void deleteNode(Node *&head);
@@ -10,11 +15,6 @@ void insertNode(Node *&head);
 void deleteList(Node *&head);
 void output(Node *head);
 const int SIZE = 7;
-
-struct Node {
-    float value;
-    Node *next;
-};
 
 int main() {
     Node *head = nullptr;
@@ -84,66 +84,8 @@ int main() {
         current = nullptr;
     }
     output(head);
-
-    // insert a node
-    cout << "After which node to insert 10000? " << endl;
-    count = 1;
-    current = head;
-    while (current) {
-        cout << "[" << count++ << "] " << current->value << endl;
-        current = current->next;
-    }
-    cout << "Choice --> ";
-    cin >> entry;
-
-    current = head;
-    prev = nullptr;  // reset prev to nullptr for same reason
-
-    for (int i = 0; i < entry; i++) {
-        prev = current;
-        current = current->next;
-    }
-
-    // at this point, insert a node between prev and current
-    Node *newnode = new Node;
-    newnode->value = 10000;
-    newnode->next = current;
-
-    if (prev == nullptr) {
-        // inserting before the head
-        head = newnode;
-    } else {
-        prev->next = newnode;
-    }
-    output(head);
-
-    // deleting the linked list
-    current = head;
-    while (current) {
-        head = current->next;
-        delete current;
-        current = head;
-    }
-    head = nullptr;
-    output(head);
-
     return 0;
 }
-
-void output(Node *hd) {
-    if (!hd) {
-        cout << "Empty list.\n";
-        return;
-    }
-    int count = 1;
-    Node *current = hd;
-    while (current) {
-        cout << "[" << count++ << "] " << current->value << endl;
-        current = current->next;
-    }
-    cout << endl;
-}
-
 
 void addNodeFront(Node *&head){
     Node *newNode = new Node;
@@ -152,17 +94,20 @@ void addNodeFront(Node *&head){
     newNode->next = head;
     head = newNode;
 }
-void addNodeTail(Node *&head){
+void addNodeTail(Node *&head) {
     Node *newNode = new Node;
     cout << "Enter value: ";
     cin >> newNode->value;
     newNode->next = nullptr;
+    if (head == nullptr) {
+        head = newNode;
+        return;
+    }
     Node *current = head;
-    while(current->next) {
+    while (current->next) {
         current = current->next;
     }
     current->next = newNode;
-
 }
 void deleteNode(Node *&head){
     int entry;
@@ -189,7 +134,7 @@ void insertNode(Node *&head){
     cin >> e;
     Node *current = head;
     Node *prev = nullptr;
-    for(int i =0; i < e; i++) {
+    for(int i = 0; i < e; i++) {
         prev = current;
         current = current->next;
     }
@@ -197,7 +142,7 @@ void insertNode(Node *&head){
     cout << "Enter value: ";
     cin >> newNode->value;
     newNode->next = current;
-    if(prev = nullptr){
+    if(prev == nullptr){
         head = newNode;
     }else {
         prev->next = newNode;
