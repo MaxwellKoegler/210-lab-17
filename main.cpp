@@ -132,20 +132,59 @@ void output(Node *hd) {
 
 
 void addNodeFront(Node *&head){
-
+    Node *newNode = new Node;
+    cout << "Enter value: ";
+    cin >> newNode->value;
+    newNode->next = head;
+    head = newNode;
 }
 void addNodeTail(Node *&head){
+    Node *newNode = new Node;
+    cout << "Enter value: ";
+    cin >> newNode->value;
+    newNode->next = nullptr;
+    Node *current = head;
+    while(current->next) {
+        current = current->next;
+    }
+    current->next = newNode;
 
 }
 void deleteNode(Node *&head){
-
+    int entry;
+    cout << "Which node to delete? ";
+    cin >> entry;
+    Node *current = head;
+    Node *prev = nullptr;
+    for(int i = 0; i < entry - 1; i++){
+        prev = current;
+        current = current->next;
+    }
+    if(current){
+        if(prev == nullptr) {
+            head = current->next;
+        } else {
+            prev->next = current->next;
+        }
+        delete current;
+    }
 }
 void insertNode(Node *&head){
+    int e;
+    cout << "which node to insert after? ";
+    cin >> e;
+    Node *current = head;
+    Node *prev = nullptr;
+    for(int i =0; i < e; i++) {
+        prev = current;
+        current = current->next;
+    }
 
+    
 }
 void deleteList(Node *&head){
 
 }
 void output(Node *head){
-    
+
 }
