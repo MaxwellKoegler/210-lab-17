@@ -1,4 +1,7 @@
 //Maxwell Koegler | 9/29/26 | Lab 17 | COMSC 210
+//I chose to pursue the refrence apporach because it made it easier
+//to formulate the functions without worrying about return types and
+//copied values across different iterations
 
 #include <iostream>
 using namespace std;
