@@ -199,5 +199,12 @@ void deleteList(Node *&head){
     head = nullptr;
 }
 void output(Node *head){
+    int count = 1;
+    Node *current = head;
 
+    while(current) {
+        cout << "[" << count++ << "]" << current->value << endl;
+        current = current->next;
+    }
+    cout << endl;
 }
