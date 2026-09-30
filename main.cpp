@@ -188,11 +188,15 @@ void insertNode(Node *&head){
     }else {
         prev->next = newNode;
     }
-
-
 }
 void deleteList(Node *&head){
-
+    Node *current = head;
+    while(current){
+        head = current->next;
+        delete current;
+        current = head;
+    }
+    head = nullptr;
 }
 void output(Node *head){
 
