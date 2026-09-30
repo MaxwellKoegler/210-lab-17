@@ -3,6 +3,13 @@
 #include <iostream>
 using namespace std;
 
+void addNodeFront(Node *&head);
+void addNodeTail(Node *&head);
+void deleteNode(Node *&head);
+void insertNode(Node *&head);
+void deleteList(Node *&head);
+void output(Node *head);
+
 const int SIZE = 7;  
 
 struct Node {
@@ -121,4 +128,24 @@ void output(Node *hd) {
         current = current->next;
     }
     cout << endl;
+}
+
+
+void addNodeFront(Node *&head){
+
+}
+void addNodeTail(Node *&head){
+
+}
+void deleteNode(Node *&head){
+
+}
+void insertNode(Node *&head){
+
+}
+void deleteList(Node *&head){
+
+}
+void output(Node *head){
+    
 }
