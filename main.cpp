@@ -2,28 +2,25 @@
 
 #include <iostream>
 using namespace std;
-
-struct Node {
+struct Node { //struct must come before prototypes because they use the struct in the def
     float value;
     Node *next;
 };
-
-void addNodeFront(Node *&head);
+void addNodeFront(Node *&head); // prototypes
 void addNodeTail(Node *&head);
 void deleteNode(Node *&head);
 void insertNode(Node *&head);
 void deleteList(Node *&head);
 void output(Node *head);
 const int SIZE = 7;
-
 int main() {
-    Node *head = nullptr;
+    Node *head = nullptr; //creates list
     int choice = 0;
     for (int i = 0; i < SIZE; i++) {
         addNodeFront(head);
     }
-    output(head);
-    while(choice != 7){
+    output(head); 
+    while(choice != 7){ //option list
         cout << "\n1. Add node to front" << endl;
         cout << "2. Add node to end" << endl;
         cout << "3. Delete node" << endl;
@@ -31,9 +28,9 @@ int main() {
         cout << "5. Delete entire list" << endl;
         cout << "6. Print list" << endl;
         cout << "7. Exit" << endl;
-        cout << "Choice --> ";
+        cout << "Choice: ";
         cin >> choice;
-        if (choice == 1) {
+        if (choice == 1) { //choice selection
             addNodeFront(head);
         }else if (choice == 2) {
             addNodeTail(head);
@@ -46,58 +43,24 @@ int main() {
         }else if (choice == 6) {
             output(head);
         }else if (choice == 7) {
-            cout << "Exiting..." << endl;
+            cout << "Exiting." << endl;
         }else{
             cout << "Invalid option";
         }
-        return 0;
     }
-
-    // create a linked list of size SIZE with random numbers 0-99
-    output(head);
-
-    // deleting a node
-    cout << "Which node to delete? " << endl;
-    output(head);
-    int entry;
-    cout << "Choice --> ";
-    cin >> entry;
-
-    // traverse that many times and delete that node
-    Node *current = head;
-    Node *prev = nullptr;  // start prev as nullptr to detect head deletion
-
-    for (int i = 0; i < (entry - 1); i++) {
-        prev = current;
-        current = current->next;
-    }
-
-    // at this point, delete current and reroute pointers
-    if (current) {
-        if (prev == nullptr) {
-            // deleting the head node
-            head = current->next;
-        } else {
-            prev->next = current->next;
-        }
-        delete current;
-        current = nullptr;
-    }
-    output(head);
+   
     return 0;
 }
 
-void addNodeFront(Node *&head){
+void addNodeFront(Node *&head){ //adds random node to front
     Node *newNode = new Node;
-    cout << "Enter value: ";
-    cin >> newNode->value;
+    newNode->value = rand() % 100;
     newNode->next = head;
     head = newNode;
 }
-void addNodeTail(Node *&head) {
+void addNodeTail(Node *&head) { //adds random node to tails
     Node *newNode = new Node;
-    cout << "Enter value: ";
-    cin >> newNode->value;
+    newNode->value = rand() % 100;
     newNode->next = nullptr;
     if (head == nullptr) {
         head = newNode;
@@ -109,7 +72,7 @@ void addNodeTail(Node *&head) {
     }
     current->next = newNode;
 }
-void deleteNode(Node *&head){
+void deleteNode(Node *&head){ //deletes specified node
     int entry;
     cout << "Which node to delete? ";
     cin >> entry;
@@ -128,7 +91,7 @@ void deleteNode(Node *&head){
         delete current;
     }
 }
-void insertNode(Node *&head){
+void insertNode(Node *&head){ //inserts a specified node
     int e;
     cout << "which node to insert after? ";
     cin >> e;
@@ -148,7 +111,7 @@ void insertNode(Node *&head){
         prev->next = newNode;
     }
 }
-void deleteList(Node *&head){
+void deleteList(Node *&head){ //deletes the whole list
     Node *current = head;
     while(current){
         head = current->next;
@@ -157,7 +120,7 @@ void deleteList(Node *&head){
     }
     head = nullptr;
 }
-void output(Node *head){
+void output(Node *head){ //outputs the whole list
     int count = 1;
     Node *current = head;
 
