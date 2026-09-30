@@ -179,8 +179,16 @@ void insertNode(Node *&head){
         prev = current;
         current = current->next;
     }
+    Node *newNode = new Node;
+    cout << "Enter value: ";
+    cin >> newNode->value;
+    newNode->next = current;
+    if(prev = nullptr){
+        head = newNode;
+    }else {
+        prev->next = newNode;
+    }
 
-    
 
 }
 void deleteList(Node *&head){
